@@ -5,11 +5,11 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
-  type: 'line',
+  type: 'line', 
   data: {
     labels: ["2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"],
     datasets: [{
-      label: "Sessions",
+      label: "Wins",
       lineTension: 0.3,
       backgroundColor: "rgba(2,117,216,0.2)",
       borderColor: "rgba(2,117,216,1)",
@@ -19,8 +19,8 @@ var myLineChart = new Chart(ctx, {
       pointHoverRadius: 5,
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
-      pointBorderWidth: 2,
-      data: [500, 540, 560, 600, 620, 640, 660, 680, 800, 820, 840, 860, 880, 900, 920, 940, 960, 980],
+      pointBorderWidth: 1,
+      data: [12, 8, 10, 12, 10, 13, 13, 13, 9],
     }],
   },
   options: {
@@ -33,13 +33,18 @@ var myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 9
         }
       }],
       yAxes: [{
         gridLines: {
           color: "rgba(0, 0, 0, .125)",
-        }
+        },
+		ticks: {
+			min: 0, // minimum value
+			max: 17, // maximum value
+			stepSize:1 
+		}
       }],
     },
     legend: {

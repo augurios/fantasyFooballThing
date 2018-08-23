@@ -95,13 +95,13 @@
         <li class="nav-item active">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
+            <span>Overview</span>
           </a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
+            <span>Schedule</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
         <!--    <h6 class="dropdown-header">Login Screens:</h6>
@@ -117,12 +117,12 @@
         <li class="nav-item">
           <a class="nav-link" href="#">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+            <span>Stats</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+            <span>Standings</span></a>
         </li>
       </ul>
 
@@ -143,7 +143,11 @@
             <div class="card-body">
 	            <img src="img/j4sPHne.png" alt="j4sPHne">
               	<h2>SapriDolphins </h2> 
-              	<p><strong>Rating: </strong>943</p>
+              	<p>
+				<strong>Founded: </strong>2009<br/>
+				<strong>Stadium: </strong> La Cueva <br/>
+				</p>
+				
             </div> 
           </div>
           
@@ -171,17 +175,17 @@
 	              	<div class="row">
 	              		<div class="col-md-4 text-center">
 		              		<!-- gauge here -->
-		              		<div id="gg2" class="gauge" data-value="68"></div>
+		              		<div id="gg2" class="gauge" data-value="65"></div>
 	              		</div>
 	              		<div class="col-md-8">
 		              		<div class="row text-center">
 		              			<div class="col-md-4">
 			              			<div>Win</div>
-			              			<p><strong>160</strong></p>
+			              			<p><strong>100</strong></p>
 		              			</div>
 		              			<div class="col-md-4">
 			              			<div>Loss</div>
-			              			<p><strong>77</strong></p>
+			              			<p><strong>53</strong></p>
 		              			</div>
 		              			<div class="col-md-4">
 			              			<div>Tie</div>
@@ -196,20 +200,20 @@
 		              	<div class="row">
 		              		<div class="col-md-4">
 		              			<div class="stat">
-		              				<h6>Top Level</h6>
-		              				<p>x6</p>
+		              				<h6>Offense Fantasy Pts</h6>
+		              				<p>6</p>
 		              			</div>
 		              		</div>
 		              		<div class="col-md-4">
 		              			<div class="stat">
-		              				<h6>Trophies</h6>
-		              				<p>13</p>
+		              				<h6>Defense Fantasy Pts</h6>
+		              				<p>4</p>
 		              			</div>
 		              		</div>
 		              		<div class="col-md-4">
 		              			<div class="stat">
-		              				<h6>Teams</h6>
-		              				<p>15</p>
+		              				<h6>Regular Season Champion</h6>
+		              				<p>3</p>
 		              			</div>
 		              		</div>
 		              	</div>
@@ -218,7 +222,68 @@
               </div>
             </div>
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-          </div>
+          </div> <!-- /DataTables  -->
+		  
+		   <!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              Playoff Performance</div>
+            <div class="card-body">
+              <div class="row">
+              	<div class="col-lg-6 win-rate">
+	              	<div class="row">
+	              		<div class="col-md-4 text-center">
+		              		<!-- gauge here -->
+		              		<div id="playoffsC" class="gauge" data-value="80"></div>
+	              		</div>
+	              		<div class="col-md-8">
+		              		<div class="row text-center">
+		              			<div class="col-md-4">
+			              			<div>Win</div>
+			              			<p><strong>8</strong></p>
+		              			</div>
+		              			<div class="col-md-4">
+			              			<div>Loss</div>
+			              			<p><strong>2</strong></p>
+		              			</div>
+		              			<div class="col-md-4">
+			              			<div>Tie</div>
+			              			<p><strong>0</strong></p>
+		              			</div>
+		              		</div>
+	              		</div>
+	              	</div>
+              	</div>
+				<div class="col-lg-6 text-center">
+	              	<div class="other-stats">
+		              	<div class="row">
+		              		<div class="col-md-4">
+		              			<div class="stat">
+		              				<h6>Playoffs Appearances</h6>
+		              				<p>6</p>
+		              			</div>
+		              		</div>
+		              		<div class="col-md-4">
+		              			<div class="stat">
+		              				<h6>Championships</h6>
+		              				<p>4</p>
+		              			</div>
+		              		</div>
+		              		<div class="col-md-4">
+		              			<div class="stat">
+		              				<h6>Regular Season Champion</h6>
+		              				<p>3</p>
+		              			</div>
+		              		</div>
+		              	</div>
+	              	</div>
+              	</div>
+              	
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div> <!-- /DataTables  -->
 
         </div>
         <!-- /.container-fluid -->
@@ -298,6 +363,13 @@
 		
 		    var gg2 = new JustGage({
 		      id: 'gg2',
+		      title: 'Win Rate',
+		      label: 'percent',
+		      defaults: dflt
+		    });
+			
+			var playoffsC = new JustGage({
+		      id: 'playoffsC',
 		      title: 'Win Rate',
 		      label: 'percent',
 		      defaults: dflt
