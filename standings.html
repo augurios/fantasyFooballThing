@@ -104,7 +104,7 @@
             <span>Schedule</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-        <!--    <h6 class="dropdown-header">Login Screens:</h6>
+         <!--     <h6 class="dropdown-header">Login Screens:</h6>
             <a class="dropdown-item" href="login.html">Login</a>
             <a class="dropdown-item" href="register.html">Register</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
@@ -135,159 +135,147 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Group Stats</li>
+            <li class="breadcrumb-item active">Standings</li>
           </ol>
-          
-           <!-- Area group header -->
-          <div class="card mb-3 view-head">
-            <div class="card-body">
-	            <img src="img/j4sPHne.png" alt="j4sPHne" id="teamlogo">
-              	<h2> 
-	              	<select class="form-control" id="teamSelector">
-				      
-				    </select>
-    			</h2> 
-              	<p>
-				<strong>Founded: </strong><span id="founded">2009</span><br/>
-				<strong>Stadium: </strong> <span id="stadium">La Cueva</span> <br/>
-				</p>
-				
-            </div> 
-          </div>
-          
-          
-           <!-- Area Chart Example-->
-          <div class="card mb-3">
-            <div class="card-header">
-              <i class="fas fa-chart-area"></i>
-              Yearly Performance</div>
-            <div class="card-body">
-              <canvas id="myAreaChart" width="100%" height="30"></canvas>
-            </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-          </div>
 
-        
           <!-- DataTables Example -->
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              Overall Performance</div>
+              2016 Standings</div>
             <div class="card-body">
-              <div class="row">
-              	<div class="col-lg-6 win-rate">
-	              	<div class="row">
-	              		<div class="col-md-4 text-center">
-		              		<!-- gauge here -->
-		              		<div id="gg2" class="gauge" data-value="65"></div>
-	              		</div>
-	              		<div class="col-md-8">
-		              		<div class="row text-center">
-		              			<div class="col-md-4">
-			              			<div>Win</div>
-			              			<p><strong id="over-wins">100</strong></p>
-		              			</div>
-		              			<div class="col-md-4">
-			              			<div>Loss</div>
-			              			<p><strong id="over-loss">>53</strong></p>
-		              			</div>
-		              			<div class="col-md-4">
-			              			<div>Tie</div>
-			              			<p><strong  id="over-tie">>0</strong></p>
-		              			</div>
-		              		</div>
-	              		</div>
-	              	</div>
-              	</div>
-              	<div class="col-lg-6 text-center">
-	              	<div class="other-stats">
-		              	<div class="row">
-		              		<div class="col-md-4">
-		              			<div class="stat">
-		              				<h6>Offense Fantasy Pts</h6>
-		              				<p id="offePts">6</p>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4">
-		              			<div class="stat">
-		              				<h6>Defense Fantasy Pts</h6>
-		              				<p id="defPts">4</p>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4">
-		              			<div class="stat">
-		              				<h6>Regular Season Champion</h6>
-		              				<p id="OverregSeasonChamp">3</p>
-		              			</div>
-		              		</div>
-		              	</div>
-	              	</div>
-              	</div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Team</th>
+                      <th>W</th>
+                      <th>L</th>
+                      <th>T</th>
+                      <th>PCT</th>
+                      <th>PF</th>
+                      <th>PA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Lord Yader</td>
+                      <td>11</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Bullets</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>.857</td>
+                      <td>1,724.14</td>
+                      <td>1,357.38</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-          </div> <!-- /DataTables  -->
-		  
-		   <!-- DataTables Example -->
-          <div class="card mb-3">
-            <div class="card-header">
-              <i class="fas fa-table"></i>
-              Playoff Performance</div>
-            <div class="card-body">
-              <div class="row">
-              	<div class="col-lg-6 win-rate">
-	              	<div class="row">
-	              		<div class="col-md-4 text-center">
-		              		<!-- gauge here -->
-		              		<div id="playoffsC" class="gauge" data-value="80"></div>
-	              		</div>
-	              		<div class="col-md-8">
-		              		<div class="row text-center">
-		              			<div class="col-md-4">
-			              			<div>Win</div>
-			              			<p><strong id="playOWin">8</strong></p>
-		              			</div>
-		              			<div class="col-md-4">
-			              			<div>Loss</div>
-			              			<p><strong id="playOLoss">2</strong></p>
-		              			</div>
-		              			<div class="col-md-4">
-			              			<div>Tie</div>
-			              			<p><strong id="playOTie">0</strong></p>
-		              			</div>
-		              		</div>
-	              		</div>
-	              	</div>
-              	</div>
-				<div class="col-lg-6 text-center">
-	              	<div class="other-stats">
-		              	<div class="row">
-		              		<div class="col-md-4">
-		              			<div class="stat">
-		              				<h6>Playoffs Appearances</h6>
-		              				<p id="appearances">6</p>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4">
-		              			<div class="stat">
-		              				<h6>Championships</h6>
-		              				<p id="championships">4</p>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4">
-		              			<div class="stat">
-		              				<h6>Regular Season Champion</h6>
-		              				<p id="regSeasonChamp">3</p>
-		              			</div>
-		              		</div>
-		              	</div>
-	              	</div>
-              	</div>
-              	
-              </div>
-            </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-          </div> <!-- /DataTables  -->
+          </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -339,22 +327,15 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Page level plugin JavaScript-->
-    <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/datatables/jquery.dataTables.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
-  
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
 
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
-	<script src="js/demo/justgage.js"></script>
-    <script src="js/demo/raphael-2.1.4.min.js"></script>
-	
-	
-	  <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
-	
+
   </body>
 
 </html>

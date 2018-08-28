@@ -387,6 +387,7 @@ body.sidebar-toggled footer.sticky-footer {
   border: 0;
   font-size: 24px;
   font-weight: bold;
+  height:auto;
 }
 
 .view-head .form-control option {

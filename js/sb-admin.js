@@ -79,7 +79,7 @@
 	        },
 			ticks: {
 				min: 0, // minimum value
-				//max: 17, // maximum value
+				max: 17, // maximum value
 				stepSize:1 
 			}
 	      }],
