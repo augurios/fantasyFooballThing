@@ -44,7 +44,7 @@
 		$.each(owners, function (i, team) {
 			    selectors.append($('<option>', { 
 			        value: team.name,
-			        text : team.name 
+			        text : team.fantasyname + " ("+team.name +")"
 			    }));
 		});
 		
@@ -79,8 +79,6 @@ $("#tblEntAttributes tbody").append(newRowContent);
 					    $("#dataTable tbody").append(newRowContent);
 				});
 				
-				$(".score span").text("/" + playedGames.length)
-				
 				for(var i = 0; i < playedGames.length; i++) {
 					if(
 						(playedGames[i].team_a[0].owner === selectorA.val() && 
@@ -103,8 +101,10 @@ $("#tblEntAttributes tbody").append(newRowContent);
 					}
 				}
 				
-				$(".team-a .score strong").text(winsA.length);
-				$(".team-b .score strong").text(winsB.length);
+				$(".team-a .record .wins-record").text(winsA.length);
+				$(".team-a .record .loss-record").text(winsB.length);
+				$(".team-b .record .wins-record").text(winsB.length);
+				$(".team-b .record .loss-record").text(winsA.length);
 				
 				console.log(playedGames, winsA, winsB)
 			} else {

@@ -94,8 +94,13 @@
   var loadData = function(data) {
 	  console.log('data to load', data)
 	  $("#founded").text(data.founded);
-	  $("#seasons").text(data.seasons);
-	  $("#teamlogo").attr('src',data.logo);
+		$("#seasons").text(data.seasons);
+		$("#name-head-coach").text(data.headcoach);
+		$("#earnings").text(data.earnings);
+		$("#nickname").text(data.nickname);
+		$("#experience").text(data.experience);
+		$("#teamlogo").attr('src',data.logo);
+		$("#head-coach-img").attr('src',data.HCimage);
 	  $("#over-wins").text(data.overall.win);
 	  $("#over-loss").text(data.overall.loss);
 	  $("#over-tie").text(data.overall.tie);

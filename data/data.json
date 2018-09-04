@@ -3,8 +3,13 @@
 		{
 			"name" :"SapriDolphins",
 			"founded" : "2009",
+			"headcoach" : "Bill Belichik",
+			"nickname" : "GOAT",
+			"earnings" : "$900",
+			"experience" : "23",
 			"seasons" : "9",
 			"logo" : "img/j4sPHne.png",
+			"HCimage" : "img/bill.jpg",
 			"yearly" : [
 				{
 					"year": "2009",
@@ -62,10 +67,15 @@
 			}
 		},
 		{
-			"name" :"OtrosDolphins",
+			"name" :"Charamanders",
 			"founded" : "2007",
+			"headcoach" : "Doug Pederson",
+			"nickname" : "Dougie",
+			"earnings" : "$400",
+			"experience" : "4",
 			"seasons" : "11",
 			"logo" : "img/j4sPHne2.png",
+			"HCimage" : "img/doug.jpg",
 			"yearly" : [
 				{
 					"year": "2007",
