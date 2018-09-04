@@ -94,7 +94,7 @@
   var loadData = function(data) {
 	  console.log('data to load', data)
 	  $("#founded").text(data.founded);
-	  $("#stadium").text(data.stadium);
+	  $("#seasons").text(data.seasons);
 	  $("#teamlogo").attr('src',data.logo);
 	  $("#over-wins").text(data.overall.win);
 	  $("#over-loss").text(data.overall.loss);

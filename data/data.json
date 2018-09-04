@@ -3,7 +3,7 @@
 		{
 			"name" :"SapriDolphins",
 			"founded" : "2009",
-			"stadium" : "La Cueva",
+			"seasons" : "9",
 			"logo" : "img/j4sPHne.png",
 			"yearly" : [
 				{
@@ -64,7 +64,7 @@
 		{
 			"name" :"OtrosDolphins",
 			"founded" : "2007",
-			"stadium" : "some other place",
+			"seasons" : "11",
 			"logo" : "img/j4sPHne2.png",
 			"yearly" : [
 				{
