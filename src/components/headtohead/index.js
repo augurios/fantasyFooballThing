@@ -8,7 +8,7 @@ const Headtohead = (props) =>
           <div className="totals">
             <select className="form-control team-selector">
               <option value> </option>
-              {props.data.map((owner, index) => {
+              {props.owners.map((owner, index) => {
 						   return <option key={owner.name} value={owner.name}>{owner.fantasyname} ({owner.name})</option>
 					    })}
               
@@ -34,7 +34,7 @@ const Headtohead = (props) =>
           <div className="totals">
             <select className="form-control team-selector">
               <option value> </option>
-              {props.data.map((owner, index) => {
+              {props.owners.map((owner, index) => {
 						   return <option key={owner.name} value={owner.name}>{owner.fantasyname} ({owner.name})</option>
 					    })}
             </select>

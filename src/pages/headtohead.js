@@ -9,12 +9,45 @@ import Gamelogs from '../components/gamelogs';
 class IndexPage extends React.Component {
 	constructor(props) {
 	        	super(props);
+	        	this.teamChangeHandlerA = this.teamChangeHandlerA.bind(this);
+	        	this.teamChangeHandlerB = this.teamChangeHandlerB.bind(this);
 	        	this.state = {
-		        	
+		        	teamA : {},
+		        	teamB : {}
 		        }
 	        }
 	        
-	
+	teamChangeHandlerA = (event) => {
+	     var teams = this.props.data.allDataJson.edges[0].node.teams
+		 //find index on state's object by ID
+		 const newTeam = teams.findIndex(team => {
+			  return team.name === event.target.value;
+		  });
+		 
+		 // update actual state with modified object
+		 this.setState(
+		 	{ teamSelected: teams[newTeam] },
+		 	() => this.loadChart()
+		 )
+		 
+		 
+	  }  
+	  
+	 teamChangeHandlerB = (event) => {
+	     var teams = this.props.data.allDataJson.edges[0].node.teams
+		 //find index on state's object by ID
+		 const newTeam = teams.findIndex(team => {
+			  return team.name === event.target.value;
+		  });
+		 
+		 // update actual state with modified object
+		 this.setState(
+		 	{ teamSelected: teams[newTeam] },
+		 	() => this.loadChart()
+		 )
+		 
+		 
+	  }
 	
 	
 	componentWillMount() {
@@ -31,7 +64,10 @@ class IndexPage extends React.Component {
 		   <main className="container-fluid">
 		    	<Breadcrumb title="Head to Head"/>
 			    <div className="container-fluid">
-			    	<Headtohead data={this.props.data.allDataJson.edges[0].node.owners}/>
+			    	<Headtohead 
+			    		owners={this.props.data.allDataJson.edges[0].node.owners} 
+						triggera={}
+			    	/>
 			    </div>
 			    <Gamelogs />
 		   </main>);
@@ -44,12 +80,42 @@ export const pageQuery = graphql`
   allDataJson {
     edges {
       node {
-	       owners{
-	        name
-	        waiver
-	        image
-	        fantasyname
-	      }
+        owners {
+          name
+          waiver
+          image
+          fantasyname
+        }
+				years{
+          weeks_games {
+            games {
+              week
+              team_a {
+                team
+                team_url
+                owner
+                logo
+                score
+                record
+                streak
+                waiver
+                bench_total
+              }
+              team_b {
+                name
+                url
+                owner
+                logo
+                score
+                record
+                streak
+                waiver
+                bench_points
+              }
+              year
+            }
+          }
+        }
       } 
     }
   }
