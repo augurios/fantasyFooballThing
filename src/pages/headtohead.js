@@ -97,7 +97,7 @@ class IndexPage extends React.Component {
 		 	
 		 	// get matching games
 		 	this.state.allGames.map((game,indi)=>{
-			 	if ((game.team_a[0].owner === this.state.teamA.name || game.team_a[0].owner === this.state.teamB.name)&&(game.team_b[0].owner === this.state.teamA.name || game.team_b[0].owner === this.state.teamB.name)) {
+			 	if ((game.team_a[0].owner === teamAlocal.name || game.team_a[0].owner === teamBlocal.name)&&(game.team_b[0].owner === teamAlocal.name || game.team_b[0].owner === teamBlocal.name)) {
 				 	localplayedGames.push(game);
 			 	}
 		 	})
@@ -142,6 +142,9 @@ class IndexPage extends React.Component {
 		 	
 	 	} else {
 		 	console.log("no match");
+		 	 this.setState(
+				 	{ playedGames:[]  }
+				 )
 	 	}
 	}
 	
