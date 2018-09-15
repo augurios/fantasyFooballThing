@@ -20,7 +20,7 @@ const Gamelogs = (props) =>
 			                	props.data.map((game, index) => {
 				                	return <tr key={game.team_b[0].score + game.team_a[0].score} >
 				                				<td>{game.year}, {game.week}</td>
-				                				<td>{game.team_a[0].team} {game.team_a[0].score}, {game.team_b[0].name} {game.team_b[0].score}</td>
+				                				<td>{game.team_a[0].team} <strong>{game.team_a[0].score}</strong>, {game.team_b[0].name} <strong>{game.team_b[0].score}</strong></td>
 				                		   </tr>
 			                	})
 			                	

@@ -32468,8 +32468,7 @@
  ]
 },
  	{
- 
- "weeks_games": [
+	 	"weeks_games": [
   {
    "games_links": [
     {
@@ -64826,17 +64825,8 @@
    ]
   }
  ]
-}
- 	],
- "owners": [
-  {
-   "name": "FEDERICO",
-   "waiver": "9",
-   "image": "http://image.fantasy.nfl.com/image/7305da33b162bff31d78a953bc562d30.jpg?x=40&y=27&sig=0c8914a6ff6c8c5fe489d5ebbba177f4",
-   "fantasyname": "Foster my Johnson"
-  },
- 	{
- "weeks_games": [
+},
+ 	{"weeks_games": [
   {
    "games_links": [
     {
@@ -97992,12 +97982,21 @@
   }
  ]
 }
+ 	
+ 	],
+ "owners": [
+  {
+   "name": "FEDERICO",
+   "waiver": "9",
+   "image": "http://image.fantasy.nfl.com/image/7305da33b162bff31d78a953bc562d30.jpg?x=40&y=27&sig=0c8914a6ff6c8c5fe489d5ebbba177f4",
+   "fantasyname": "Foster my Johnson"
+  },
   {
    "name": "Jose Alberto",
    "waiver": "7",
    "image": "https://static.nfl.com/static/content/public/static/img/fantasy/avatar/40x27/MIA4.png",
    "fantasyname": "SapriDolphins"
-  }
+  },
   {
    "name": "Alfredo",
    "waiver": "1",

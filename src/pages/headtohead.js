@@ -114,7 +114,7 @@ class IndexPage extends React.Component {
   	}
 	        
   	render() {
-	  	console.log("props", this.props)
+	  	console.log("props", this.props.data.allDataJson.edges[0].node)
 		 return (
 		   <main className="container-fluid">
 		    	<Breadcrumb title="Head to Head"/>
