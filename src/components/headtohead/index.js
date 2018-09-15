@@ -13,10 +13,10 @@ const Headtohead = (props) =>
 					    })}
               
             </select>
-            <h2 className="record"><strong>Record:</strong><span className="wins-record">0</span>-<span className="loss-record">0</span></h2>
+            <h2 className="record"><strong>Record:</strong>{props.teama.record}</h2>
           </div>
           <div className="stats">
-            <div className="image"><img src="#" alt="image"  /></div>
+            <div className="image"><img src={props.teama.logo}  alt="image"  /></div>
             <div className="nums">
               <p>Streak: <span className="streak-h2h" /></p>
               <p>Total Points: <span className="total-points-h2h" /></p>
@@ -38,10 +38,10 @@ const Headtohead = (props) =>
 						   return <option key={owner.name} value={owner.name}>{owner.fantasyname} ({owner.name})</option>
 					    })}
             </select>
-            <h2 className="record"><strong>Record:</strong><span className="wins-record">0</span>-<span className="loss-record">0</span></h2>
+            <h2 className="record"><strong>Record:</strong>{props.teamb.record}</h2>
           </div>
           <div className="stats">
-            <div className="image"><img src="#" alt="image" /></div>
+            <div className="image"><img src={props.teamb.logo} alt="image" /></div>
             <div className="nums">
               <p>Streak: <span className="streak-h2h" /></p>
               <p>Total Points: <span className="total-points-h2h" /></p>

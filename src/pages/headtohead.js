@@ -14,7 +14,9 @@ class IndexPage extends React.Component {
 	        	this.matchTeams = this.matchTeams.bind(this);
 	        	this.allGames = [],
 	        	this.initialTeam = {
+		        	    record: "",
 			        	name: "",
+			        	logo: "",
 			        	currentstreak: "",
 			        	highestwinstreak: "",
 			        	highestlosestreak: "",
@@ -48,6 +50,7 @@ class IndexPage extends React.Component {
 			 const curTeam = {...this.state.teamA};
 			 if (owners[newOwner]) {
 				 curTeam.name = owners[newOwner].name
+				 curTeam.logo = owners[newOwner].image
 				 this.setState(
 				 	{ teamA:curTeam  },
 					 	() => this.matchTeams()
@@ -64,6 +67,7 @@ class IndexPage extends React.Component {
 			 const curTeam = {...this.state.teamB};
 			 if (owners[newOwner]) {
 				 curTeam.name = owners[newOwner].name
+				 curTeam.logo = owners[newOwner].image
 				 this.setState(
 				 	{ teamB:curTeam  },
 					 	() => this.matchTeams()
@@ -84,7 +88,14 @@ class IndexPage extends React.Component {
 		console.log("Matching teams", this.state);
 	 	if(this.state.teamA.name && this.state.teamB.name) {
 		 	console.log("matched");
-		 	var localplayedGames = [];
+		 	const teamAlocal = {...this.state.teamA};
+		 	const teamBlocal = {...this.state.teamB};
+		 	
+		 	const localplayedGames = [];
+		 	const winsA = [];
+		 	const winsB = [];
+		 	
+		 	// get matching games
 		 	this.state.allGames.map((game,indi)=>{
 			 	if ((game.team_a[0].owner === this.state.teamA.name || game.team_a[0].owner === this.state.teamB.name)&&(game.team_b[0].owner === this.state.teamA.name || game.team_b[0].owner === this.state.teamB.name)) {
 				 	localplayedGames.push(game);
@@ -92,6 +103,42 @@ class IndexPage extends React.Component {
 		 	})
 		 	this.setState({ playedGames:localplayedGames  },() => console.log("played games", this.state.playedGames));
 		 	
+		 	// get winners
+		 	
+		 	localplayedGames.map((game,indi)=>{
+				 	if(
+						(game.team_a[0].owner === teamAlocal.name && 
+						 parseInt(game.team_a[0].score) > parseInt(game.team_b[0].score) 
+						 	|| 
+						 game.team_b[0].owner === teamAlocal.name && 
+						 parseInt(game.team_b[0].score) > parseInt(game.team_a[0].score)
+						 ) 
+					) {
+						winsA.push(game);
+					} else if(
+						(game.team_a[0].owner === teamBlocal.name && 
+						 parseInt(game.team_a[0].score) > parseInt(game.team_b[0].score) 
+						 	|| 
+						 game.team_b[0].owner === teamBlocal.name && 
+						 parseInt(game.team_b[0].score) > parseInt(game.team_a[0].score)
+						 ) 
+					) {
+						winsB.push(game);
+					}
+			})
+		 	
+		 	
+		 	// map new values
+		 	teamAlocal.record = parseInt(winsA.length) + " - " + localplayedGames.length;
+		 	teamBlocal.record = parseInt(winsB.length) + " - " + localplayedGames.length;
+		 	
+		 	
+		 	
+		 	
+		 	
+		 	
+		 	this.setState({ teamA:teamAlocal  });
+		 	this.setState({ teamB:teamBlocal  },()=>console.log("teamssss",teamAlocal, teamBlocal));
 		 	
 	 	} else {
 		 	console.log("no match");
