@@ -6,7 +6,7 @@ const Headtohead = (props) =>
       <div className="col-6">
         <div className="team team-a">
           <div className="totals">
-            <select className="form-control team-selector">
+            <select className="form-control team-selector teama" name="teama" onChange={props.triggerhappy}>
               <option value> </option>
               {props.owners.map((owner, index) => {
 						   return <option key={owner.name} value={owner.name}>{owner.fantasyname} ({owner.name})</option>
@@ -32,7 +32,7 @@ const Headtohead = (props) =>
       <div className="col-6">
         <div className="team team-b">
           <div className="totals">
-            <select className="form-control team-selector">
+            <select className="form-control team-selector teamb" name="teamb" onChange={props.triggerhappy} >
               <option value> </option>
               {props.owners.map((owner, index) => {
 						   return <option key={owner.name} value={owner.name}>{owner.fantasyname} ({owner.name})</option>

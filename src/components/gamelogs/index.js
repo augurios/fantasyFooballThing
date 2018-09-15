@@ -1,7 +1,7 @@
 import React from 'react';
 import './_gamelogs.scss';
 
-const Gamelogs = () =>
+const Gamelogs = (props) =>
   ( <div className="card mb-3">
 			          <div className="card-header">
 			            <i className="fas fa-table" />
@@ -11,17 +11,21 @@ const Gamelogs = () =>
 			              <table className="table table-bordered" id="dataTable" width="100%" cellSpacing={0}>
 			                <thead>
 			                  <tr>
-			                    <th>Rank</th>
-			                    <th>Team</th>
-			                    <th>W</th>
-			                    <th>L</th>
-			                    <th>T</th>
-			                    <th>PCT</th>
-			                    <th>PF</th>
-			                    <th>PA</th>
+			                  <th>Date</th>
+			                    <th>Game</th>
 			                  </tr>
-			                </thead> 
-			                <tbody />
+			                </thead>
+			                <tbody>
+			                {props.data && (
+			                	props.data.map((game, index) => {
+				                	return <tr key={game.team_b[0].score + game.team_a[0].score} >
+				                				<td>{game.year}, {game.week}</td>
+				                				<td>{game.team_a[0].team} {game.team_a[0].score}, {game.team_b[0].name} {game.team_b[0].score}</td>
+				                		   </tr>
+			                	})
+			                	
+			                	)}
+			                </tbody>
 			              </table>
 			            </div>
 			          </div>
