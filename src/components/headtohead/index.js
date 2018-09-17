@@ -18,7 +18,9 @@ const Headtohead = (props) =>
           <div className="stats">
             <div className="image"><img src={props.teama.logo}  alt="image"  /></div>
             <div className="nums">
-              <p>Streak: <span className="streak-h2h" /></p>
+              <p>currentstreak: {props.teama.currentstreak}</p>
+			  <p>highestwinstreak: {props.teama.highestwinstreak}</p>
+			  <p>highestlosestreak: {props.teama.highestlosestreak}</p>
               <p>Total Points: <span className="total-points-h2h" /></p>
               <p>Net Points: <span className="net-points-h2h" /></p>
               <p>Highest Score: <span className="highest-score-h2h" /></p>
@@ -43,7 +45,9 @@ const Headtohead = (props) =>
           <div className="stats">
             <div className="image"><img src={props.teamb.logo} alt="image" /></div>
             <div className="nums">
-              <p>Streak: <span className="streak-h2h" /></p>
+              <p>currentstreak: {props.teamb.currentstreak}</p>
+			  <p>highestwinstreak: {props.teamb.highestwinstreak}</p>
+			  <p>highestlosestreak: {props.teamb.highestlosestreak}</p>
               <p>Total Points: <span className="total-points-h2h" /></p>
               <p>Net Points: <span className="net-points-h2h" /></p>
               <p>Highest Score: <span className="highest-score-h2h" /></p>

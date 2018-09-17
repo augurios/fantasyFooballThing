@@ -132,10 +132,86 @@ class IndexPage extends React.Component {
 		 	teamAlocal.record = parseInt(winsA.length) + " - " + localplayedGames.length;
 		 	teamBlocal.record = parseInt(winsB.length) + " - " + localplayedGames.length;
 		 	
+		 	//streaks
+		 	const streak = (games, team) => {
+			    var i,
+			        temp,
+			        streak = 0,
+			        loss = 0,
+			        length = games.length,
+			        streaks = {
+				        highestStreak : 0,
+				        lowestStreak: 0,
+				        current: 0,
+			        }
+			        
+			    for(i = 0; i < length; i++) {
+				    var check;
+			        // check the value of the current entry against the last
+			        if (games[i].team_a[0].owner === team.name && 
+						 parseInt(games[i].team_a[0].score) > parseInt(games[i].team_b[0].score) 
+						 	|| 
+						 games[i].team_b[0].owner === team.name && 
+						 parseInt(games[i].team_b[0].score) > parseInt(games[i].team_a[0].score)
+						) {
+							//check = 1,
+							streak++;
+							loss = 0;
+						} else if (games[i].team_a[0].owner === team.name && 
+						 parseInt(games[i].team_a[0].score) < parseInt(games[i].team_b[0].score) 
+						 	|| 
+						 games[i].team_b[0].owner === team.name && 
+						 parseInt(games[i].team_b[0].score) < parseInt(games[i].team_a[0].score)
+						) {
+							//check = ''
+							loss++;
+							streak = 0;
+						} else {
+							loss = 0;
+							streak = 0;
+						}
+			       
+			        
+					streaks.current = streak;
+			        // set the master streak var
+			        if(streak > streaks.highestStreak) {
+			            streaks.highestStreak = streak;
+			            
+			        }
+			        
+			        if(loss > streaks.lowestStreak) {
+				        streaks.lowestStreak = loss
+				    }
+			        
+			        
+			    }
+			
+			    return streaks;
+			}
+			
+			
+			
+			const teamAstreak = streak(localplayedGames.slice(0).reverse(),teamAlocal);
+			
+		 	teamAlocal.currentstreak = teamAstreak.current;
+			teamAlocal.highestwinstreak = teamAstreak.highestStreak;
+			teamAlocal.highestlosestreak = teamAstreak.lowestStreak;
 		 	
-		 	
-		 	
-		 	
+		 	const teamBstreak = streak(localplayedGames.slice(0).reverse(),teamBlocal);
+			
+		 	teamBlocal.currentstreak = teamBstreak.current;
+			teamBlocal.highestwinstreak = teamBstreak.highestStreak;
+			teamBlocal.highestlosestreak = teamBstreak.lowestStreak;
+			
+			//total points	
+			
+			const getTotalPoints = (team) => {
+				
+				localplayedGames.map((game, indix) => {
+					
+				})
+			} 
+			
 		 	
 		 	this.setState({ teamA:teamAlocal  });
 		 	this.setState({ teamB:teamBlocal  },()=>console.log("teamssss",teamAlocal, teamBlocal));
