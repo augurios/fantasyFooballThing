@@ -18,15 +18,15 @@ const Headtohead = (props) =>
           <div className="stats">
             <div className="image"><img src={props.teama.logo}  alt="image"  /></div>
             <div className="nums">
-              <p>currentstreak: {props.teama.currentstreak}</p>
-			  <p>highestwinstreak: {props.teama.highestwinstreak}</p>
-			  <p>highestlosestreak: {props.teama.highestlosestreak}</p>
-              <p>Total Points: <span className="total-points-h2h" /></p>
-              <p>Net Points: <span className="net-points-h2h" /></p>
-              <p>Highest Score: <span className="highest-score-h2h" /></p>
-              <p>Lowest Score: <span className="loweset-score-h2h" /></p>
-              <p>Biggest Win Margin: <span className="big-win-margin-h2h" /></p>
-              <p>Smallest Win Margin: <span className="small-win-margin-h2h" /></p>
+              <p>current streak: {props.teama.currentstreak}</p>
+			  <p>highest win streak: {props.teama.highestwinstreak}</p>
+			  <p>highest lose streak: {props.teama.highestlosestreak}</p>
+              <p>Total Points: {props.teama.totalPoints}</p>
+              <p>Net Points: {props.teama.totalPoints - props.teamb.totalPoints }</p>
+              <p>Highest Score: {props.teama.highestScore}</p>
+              <p>Lowest Score: {props.teama.lowestScore}</p>
+              <p>Biggest Win Margin:{props.teama.highestMargin}</p>
+              <p>Smallest Win Margin: {props.teama.lowestMargin}</p>
             </div>
           </div>
         </div>
@@ -45,15 +45,15 @@ const Headtohead = (props) =>
           <div className="stats">
             <div className="image"><img src={props.teamb.logo} alt="image" /></div>
             <div className="nums">
-              <p>currentstreak: {props.teamb.currentstreak}</p>
-			  <p>highestwinstreak: {props.teamb.highestwinstreak}</p>
-			  <p>highestlosestreak: {props.teamb.highestlosestreak}</p>
-              <p>Total Points: <span className="total-points-h2h" /></p>
-              <p>Net Points: <span className="net-points-h2h" /></p>
-              <p>Highest Score: <span className="highest-score-h2h" /></p>
-              <p>Lowest Score: <span className="loweset-score-h2h" /></p>
-              <p>Biggest Win Margin: <span className="big-win-margin-h2h" /></p>
-              <p>Smallest Win Margin: <span className="small-win-margin-h2h" /></p>
+              <p>current streak: {props.teamb.currentstreak}</p>
+			  <p>highest win streak: {props.teamb.highestwinstreak}</p>
+			  <p>highest lose streak: {props.teamb.highestlosestreak}</p>
+              <p>Total Points: {props.teamb.totalPoints}</p>
+              <p>Net Points: {props.teamb.totalPoints - props.teama.totalPoints }</p>
+              <p>Highest Score: {props.teamb.highestScore}</p>
+              <p>Lowest Score: {props.teamb.lowestScore}</p>
+              <p>Biggest Win Margin:{props.teamb.highestMargin}</p>
+              <p>Smallest Win Margin: {props.teamb.lowestMargin}</p>
             </div>
           </div>
         </div>

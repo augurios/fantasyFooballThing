@@ -23,7 +23,7 @@ class IndexPage extends React.Component {
 			        	totalpoints: "",
 			        	netpoints: "",
 			        	hightestscore: "",
-			        	lowest: "",
+			        	lowestscore: "",
 			        	biggestwinmargin: "",
 						smallestwinmargin: "",
 		        	},
@@ -129,20 +129,29 @@ class IndexPage extends React.Component {
 		 	
 		 	
 		 	// map new values
-		 	teamAlocal.record = parseInt(winsA.length) + " - " + localplayedGames.length;
-		 	teamBlocal.record = parseInt(winsB.length) + " - " + localplayedGames.length;
+		 	teamAlocal.record = parseInt(winsA.length) + " - " + parseInt(winsB.length);
+		 	teamBlocal.record = parseInt(winsB.length) + " - " + parseInt(winsA.length);
 		 	
-		 	//streaks
-		 	const streak = (games, team) => {
+		 	//stat
+		 	const stat = (games, team) => {
 			    var i,
 			        temp,
-			        streak = 0,
-			        loss = 0,
+					winStreak = 0,
+					lossStreak = 0,
+					highMarginA = 0,
+					highMarginB = 0,
+					lowMarginA = 10000,
+					lowMarginB = 10000,
 			        length = games.length,
-			        streaks = {
+			        stats = {
 				        highestStreak : 0,
 				        lowestStreak: 0,
-				        current: 0,
+						currentStreak: 0,
+						highestScore:0,
+						lowestScore:10000,
+						highestMargin:0,
+						lowestMargin:10000,
+						totalPoints:0,
 			        }
 			        
 			    for(i = 0; i < length; i++) {
@@ -155,8 +164,10 @@ class IndexPage extends React.Component {
 						 parseInt(games[i].team_b[0].score) > parseInt(games[i].team_a[0].score)
 						) {
 							//check = 1,
-							streak++;
-							loss = 0;
+							lowMarginA = parseInt(games[i].team_a[0].score) - parseInt(games[i].team_b[0].score);
+							lowMarginB = parseInt(games[i].team_b[0].score) - parseInt(games[i].team_a[0].score);
+							winStreak++;
+							lossStreak = 0;
 						} else if (games[i].team_a[0].owner === team.name && 
 						 parseInt(games[i].team_a[0].score) < parseInt(games[i].team_b[0].score) 
 						 	|| 
@@ -164,51 +175,109 @@ class IndexPage extends React.Component {
 						 parseInt(games[i].team_b[0].score) < parseInt(games[i].team_a[0].score)
 						) {
 							//check = ''
-							loss++;
-							streak = 0;
+							lossStreak++;
+							winStreak = 0;
 						} else {
-							loss = 0;
-							streak = 0;
+							lossStreak = 0;
+							winStreak = 0;
 						}
 			       
-			        
-					streaks.current = streak;
-			        // set the master streak var
-			        if(streak > streaks.highestStreak) {
-			            streaks.highestStreak = streak;
+					stats.currentStreak = winStreak;
+			        // set the master stats var
+			        if(winStreak > stats.highestStreak) {
+			            stats.highestStreak = winStreak;
 			            
 			        }
 			        
-			        if(loss > streaks.lowestStreak) {
-				        streaks.lowestStreak = loss
-				    }
-			        
+			        if(lossStreak > stats.lowestStreak) {
+				        stats.lowestStreak = lossStreak
+					}
+					
+					// Check Highest score
+					if(parseInt(games[i].team_a[0].score) > stats.highestScore && games[i].team_a[0].owner === team.name) {
+			            stats.highestScore = parseInt(games[i].team_a[0].score);
+					}
+
+					if(parseInt(games[i].team_b[0].score) > stats.highestScore && games[i].team_b[0].owner === team.name) {
+			            stats.highestScore = parseInt(games[i].team_b[0].score);
+			            
+					}
+					
+					// Check lowest score 
+					if(parseInt(games[i].team_a[0].score) < stats.lowestScore && games[i].team_a[0].owner === team.name) {
+				        stats.lowestScore = parseInt(games[i].team_a[0].score);
+					}
+					
+					if(parseInt(games[i].team_b[0].score) < stats.lowestScore && games[i].team_b[0].owner === team.name) {
+				        stats.lowestScore = parseInt(games[i].team_b[0].score);
+					}
+					
+					// Check Highest margin 
+					highMarginA = parseInt(games[i].team_a[0].score) - parseInt(games[i].team_b[0].score);
+					highMarginB = parseInt(games[i].team_b[0].score) - parseInt(games[i].team_a[0].score);
+
+					if(highMarginA > stats.highestMargin && games[i].team_a[0].owner === team.name) {
+			            stats.highestMargin = highMarginA;
+					}
+
+					if(highMarginB > stats.highestMargin && games[i].team_b[0].owner === team.name) {
+			            stats.highestMargin = highMarginB;
+					}
+
+					// Check Lowest margin 
+					if(lowMarginA < stats.lowestMargin && games[i].team_a[0].owner === team.name && lowMarginA > 0 ) {
+			            stats.lowestMargin = lowMarginA;
+					}
+
+					if(lowMarginB < stats.lowestMargin && games[i].team_b[0].owner === team.name && lowMarginB > 0 ) {
+			            stats.lowestMargin = lowMarginB;
+					}
+
+					if(games[i].team_a[0].owner === team.name) {
+						stats.totalPoints+= parseInt(games[i].team_a[0].score);
+					} 
+					if(games[i].team_b[0].owner === team.name ) {
+						
+						stats.totalPoints+= parseInt(games[i].team_b[0].score);
+						
+					}
+					console.log(stats.totalPoints);
 			        
 			    }
 			
-			    return streaks;
+			    return stats;
 			}
 			
 			
 			
-			const teamAstreak = streak(localplayedGames.slice(0).reverse(),teamAlocal);
+			const teamAstreak = stat(localplayedGames.slice(0).reverse(),teamAlocal);
 			
-		 	teamAlocal.currentstreak = teamAstreak.current;
+		 	teamAlocal.currentstreak = teamAstreak.currentStreak;
 			teamAlocal.highestwinstreak = teamAstreak.highestStreak;
 			teamAlocal.highestlosestreak = teamAstreak.lowestStreak;
+			teamAlocal.highestScore = teamAstreak.highestScore;
+			teamAlocal.lowestScore = teamAstreak.lowestScore;
+			teamAlocal.highestMargin = teamAstreak.highestMargin;
+			teamAlocal.lowestMargin = teamAstreak.lowestMargin;
+			teamAlocal.totalPoints = teamAstreak.totalPoints;
 		 	
-		 	const teamBstreak = streak(localplayedGames.slice(0).reverse(),teamBlocal);
+		 	const teamBstreak = stat(localplayedGames.slice(0).reverse(),teamBlocal);
 			
-		 	teamBlocal.currentstreak = teamBstreak.current;
+		 	teamBlocal.currentstreak = teamBstreak.currentStreak;
 			teamBlocal.highestwinstreak = teamBstreak.highestStreak;
 			teamBlocal.highestlosestreak = teamBstreak.lowestStreak;
+			teamBlocal.highestScore = teamBstreak.highestScore;
+			teamBlocal.lowestScore = teamBstreak.lowestScore;
+			teamBlocal.highestMargin = teamBstreak.highestMargin;
+			teamBlocal.lowestMargin = teamBstreak.lowestMargin;
+			teamBlocal.totalPoints = teamBstreak.totalPoints;
 			
 			//total points	
 			
 			const getTotalPoints = (team) => {
 				
 				localplayedGames.map((game, indix) => {
-					
+
 				})
 			} 
 			
