@@ -97,7 +97,10 @@ class IndexPage extends React.Component {
 		 	
 		 	// get matching games
 		 	this.state.allGames.map((game,indi)=>{
-			 	if ((game.team_a[0].owner === teamAlocal.name || game.team_a[0].owner === teamBlocal.name)&&(game.team_b[0].owner === teamAlocal.name || game.team_b[0].owner === teamBlocal.name)) {
+			 	if (
+					 (game.team_a[0].owner === teamAlocal.name || game.team_a[0].owner === teamBlocal.name)&&
+					 (game.team_b[0].owner === teamAlocal.name || game.team_b[0].owner === teamBlocal.name)
+					 ) {
 				 	localplayedGames.push(game);
 			 	}
 		 	})
@@ -134,6 +137,27 @@ class IndexPage extends React.Component {
 		 	
 		 	//stat
 		 	const stat = (games, team) => {
+				
+				 
+				for(var ii = 0; ii < games.length; ii++) {
+					
+					const week = games[ii].week.split(" ");
+					
+					games[ii].date = parseInt(games[ii].year) + "-" + week[1];
+
+				}
+
+				function compare(a,b) {
+					if (a.last_nom > b.last_nom)
+					  return -1;
+					if (a.last_nom < b.last_nom)
+					  return 1;
+					return 0;
+				}
+				  
+				games.sort(compare);
+				games.slice(0).reverse();
+
 			    var i,
 			        temp,
 					winStreak = 0,
@@ -241,7 +265,6 @@ class IndexPage extends React.Component {
 						stats.totalPoints+= parseInt(games[i].team_b[0].score);
 						
 					}
-					console.log(stats.totalPoints);
 			        
 			    }
 			
