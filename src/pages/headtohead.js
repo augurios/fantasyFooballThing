@@ -16,7 +16,7 @@ class IndexPage extends React.Component {
 	        	this.initialTeam = {
 		        	    record: "",
 			        	name: "",
-			        	logo: "",
+			        	logo: "/img/DEF.png",
 			        	currentstreak: "",
 			        	highestwinstreak: "",
 			        	highestlosestreak: "",
@@ -29,7 +29,8 @@ class IndexPage extends React.Component {
 		        	},
 	        	this.state = {
 		        	teamA : {...this.initialTeam},
-		        	teamB : {...this.initialTeam}
+					teamB : {...this.initialTeam},
+					gamesLength : false 
 		        },
 		        this.playedGames = []
 	        }
@@ -87,7 +88,8 @@ class IndexPage extends React.Component {
 	matchTeams = () => {
 		console.log("Matching teams", this.state);
 	 	if(this.state.teamA.name && this.state.teamB.name) {
-		 	console.log("matched");
+			 console.log("matched");
+			 this.setState({ gamesLength : true });
 		 	const teamAlocal = {...this.state.teamA};
 		 	const teamBlocal = {...this.state.teamB};
 		 	
@@ -132,8 +134,10 @@ class IndexPage extends React.Component {
 		 	
 		 	
 		 	// map new values
-		 	teamAlocal.record = parseInt(winsA.length) + " - " + parseInt(winsB.length);
-		 	teamBlocal.record = parseInt(winsB.length) + " - " + parseInt(winsA.length);
+			 teamAlocal.record = parseInt(winsA.length) 
+			 //+ " - " + parseInt(winsB.length);
+			 teamBlocal.record = parseInt(winsB.length) 
+			 //+ " - " + parseInt(winsA.length);
 		 	
 		 	//stat
 		 	const stat = (games, team) => {
@@ -309,7 +313,8 @@ class IndexPage extends React.Component {
 		 	this.setState({ teamB:teamBlocal  },()=>console.log("teamssss",teamAlocal, teamBlocal));
 		 	
 	 	} else {
-		 	console.log("no match");
+			 console.log("no match");
+			 this.setState({ gamesLength : false });
 		 	 this.setState(
 				 	{ playedGames:[]  }
 				 )
@@ -332,18 +337,19 @@ class IndexPage extends React.Component {
   	}
 	        
   	render() {
-	  	console.log("props", this.props.data.allDataJson.edges[0].node)
+		  console.log('games l', this.state.gamesLength);
 		 return (
-		   <main className="container-fluid">
+		   <main className="container-fluid headtohead">
 		    	<Breadcrumb title="Head to Head"/>
-			    <div className="container-fluid">
+			    
 			    	<Headtohead 
 			    		owners={this.props.data.allDataJson.edges[0].node.owners} 
 						triggerhappy={(event)=> this.teamChangeHandler(event)}
 						teama={this.state.teamA}
 						teamb={this.state.teamB}
+						games={this.state.gamesLength}
 			    	/>
-			    </div>
+			   
 			    <Gamelogs data={this.state.playedGames} />
 		   </main>);
 	}

@@ -12,8 +12,8 @@ library.add(faChartArea)
 library.add(faTable)
 import './_sidebar.scss';
 
-const Sidebar = () =>
-  (<ul className="sidebar navbar-nav toggled">
+const Sidebar = (props) =>
+  (<ul className={"sidebar navbar-nav "+(props.toggled ? 'untoggled' : 'toggled')}>
         <li className="nav-item ">
         <NavLink to="/index.html" className="nav-link" activeClassName="active">
 			<FontAwesomeIcon icon="tachometer-alt" />

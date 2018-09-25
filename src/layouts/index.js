@@ -7,25 +7,39 @@ import Footer from '../components/footer';
 
 import '../../sass/style.scss';
 
-const TemplateWrapper = ({ children }) => (
-  <div id="page-top" className="sidebar-toggled">
-    <Helmet
-      title="Fantasy footbal ultimate thing"
-    />
-    
-    <Header />
-    <div id="wrapper">
-	  <Sidebar />
-    		<div id="content-wrapper">
-			    {children()}
-			    
-		    </div>
-		    
-		    <Footer />
-		</div>
-  </div>
-);
+class TemplateWrapper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.sidebarToggle = this.sidebarToggle.bind(this);
+    this.state = {
+      sidebarToggled: false
+    }
+  }
 
+  sidebarToggle = () => {
+    const doesShow = this.state.sidebarToggled
+	  this.setState({sidebarToggled: !doesShow})
+  }
+    render() {
+        return (
+          <div id="page-top" className={this.state.sidebarToggled ? 'sidebar-toggled' : 'sidebar-untoggled'}>
+              <Helmet
+                title="Fantasy footbal ultimate thing"
+              />
+              
+              <Header triggerhappy={this.sidebarToggle} />
+              <div id="wrapper">
+              <Sidebar toggled={this.state.sidebarToggled} />
+                  <div id="content-wrapper">
+                      {this.props.children()}
+                  </div>
+                  
+                  <Footer />
+              </div>
+            </div>
+        )
+    }
+}
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
 };

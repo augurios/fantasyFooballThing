@@ -2,6 +2,7 @@
   width: 90px !important;
   background-color: #212529;
   min-height: calc(100vh - 56px);
+  transition: all 0.4s ease;
 }
 
 .sidebar .nav-item:last-child {
@@ -50,7 +51,6 @@
 
 .sidebar.toggled {
   width: 0 !important;
-  overflow: hidden;
 }
 
 @media (min-width: 768px) {

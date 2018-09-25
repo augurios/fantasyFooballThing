@@ -29,10 +29,20 @@ body {
   padding-top: 1rem;
   padding-bottom: 80px;
 }
+@media (max-width: 768px) {
+  #wrapper #content-wrapper {
+    min-width: 100%;
+  }
+}
 
 .fixed-nav #content-wrapper {
   margin-top: 56px;
   padding-left: 90px;
+}
+
+.sidebar-toggled {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .fixed-nav.sidebar-toggled #content-wrapper {
