@@ -17,21 +17,20 @@ class Headtohead extends React.Component {
       backgroundImage:`url(${this.props.teamb.logo})`
     };
     return ( 
-      <div className="row">
-        <div className="col-lg-4 offset-lg-4 col-md-6 offset-md-3">
+      <div>
             <div className="row">
               <div className="col-6">
                 <div className="team team-a">
                   <div className="totals">
                   <div className="image" style={ bgStyleA }></div>
                     <select className="form-control team-selector teama" name="teama" onChange={this.props.triggerhappy}>
-                      <option value> Red Team</option>
+                      <option value>Select Red Team</option>
                       {this.props.owners.map((owner, index) => {
                       return <option key={owner.name} value={owner.name}>{owner.fantasyname} ({owner.name})</option>
                       })}
                       
                     </select><FontAwesomeIcon icon="caret-down"/>
-                    <h2 className={"record " + (this.props.games ? 'visible' : 'hidden')}>{this.props.teama.record}</h2>
+                    <h2 className="record">{this.props.teama.record}</h2>
                   </div>
                 
                 </div>
@@ -41,12 +40,12 @@ class Headtohead extends React.Component {
                   <div className="totals">
                   <div className="image" style={ bgStyleB }></div>
                     <select className="form-control team-selector teamb" name="teamb" onChange={this.props.triggerhappy} >
-                      <option value>Blue Team</option>
+                      <option value>Select Blue Team</option>
                       {this.props.owners.map((owner, index) => {
                       return <option key={owner.name} value={owner.name}>{owner.fantasyname} ({owner.name})</option>
                       })}
                     </select><FontAwesomeIcon icon="caret-down"/>
-                    <h2 className={"record " + (this.props.games ? 'visible' : 'hidden')}>{this.props.teamb.record}</h2>
+                    <h2 className="record">{this.props.teamb.record}</h2>
                 </div>
                 
                 </div>
@@ -93,8 +92,7 @@ class Headtohead extends React.Component {
               </div>
             </div>
             </div>  
-          </div>
-        </div>)
+          </div>)
   }
 };
 

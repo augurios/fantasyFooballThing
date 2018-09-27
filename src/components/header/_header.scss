@@ -1,45 +1,21 @@
-.navbar-nav .form-inline .input-group {
-  width: 100%;
+.navbar.navbar-dark {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#757575+0,343a40+100 */
+    background: #757575; /* Old browsers */
+    background: -moz-linear-gradient(top, #757575 0%, #343a40 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #757575 0%,#343a40 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #757575 0%,#343a40 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#757575', endColorstr='#343a40',GradientType=0 ); /* IE6-9 */
+    box-shadow: -3px 2px 4px rgba(0, 0, 0, 0.25882352941176473);
+
+    .navbar-brand {
+      color: #000;
+      text-shadow: 1px 1px 0px #ffffff6e;
+      transition: all 0.4s ease;
+      &:hover,
+      &:focus {
+        color: #ffffff26;
+      }
+    }
 }
 
-.navbar-nav .nav-item.active .nav-link {
-  color: #fff;
-}
-
-.navbar-nav .nav-item.dropdown .dropdown-toggle::after {
-  width: 1rem;
-  text-align: center;
-  float: right;
-  vertical-align: 0;
-  border: 0;
-  font-weight: 900;
-  content: '\f105';
-  font-family: 'Font Awesome 5 Free';
-}
-
-.navbar-nav .nav-item.dropdown.show .dropdown-toggle::after {
-  content: '\f107';
-}
-
-.navbar-nav .nav-item.dropdown.no-arrow .dropdown-toggle::after {
-  display: none;
-}
-
-.navbar-nav .nav-item .nav-link:focus {
-  outline: none;
-}
-
-.navbar-nav .nav-item .nav-link .badge {
-  position: absolute;
-  margin-left: 0.75rem;
-  top: 0.3rem;
-  font-weight: 400;
-  font-size: 0.5rem;
-}
-
-@media (min-width: 768px) {
-  .navbar-nav .form-inline .input-group {
-    width: auto;
-  }
-}
 

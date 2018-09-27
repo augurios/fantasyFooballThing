@@ -14,7 +14,7 @@ class IndexPage extends React.Component {
 	        	this.matchTeams = this.matchTeams.bind(this);
 	        	this.allGames = [],
 	        	this.initialTeam = {
-		        	    record: "",
+		        	    record: "-",
 			        	name: "",
 			        	logo: "/img/DEF.png",
 			        	currentstreak: "",
@@ -28,6 +28,7 @@ class IndexPage extends React.Component {
 						smallestwinmargin: "",
 		        	},
 	        	this.state = {
+					owners: [...this.props.data.allDataJson.edges[0].node.owners],
 		        	teamA : {...this.initialTeam},
 					teamB : {...this.initialTeam},
 					gamesLength : false 
@@ -38,7 +39,7 @@ class IndexPage extends React.Component {
 	
 	
 	teamChangeHandler = (event) => {
-	     var owners = this.props.data.allDataJson.edges[0].node.owners
+	     var owners = [...this.state.owners]
 	     console.log('event', event.target.name);
 		 //find index on state's object by ID
 		 const newOwner = owners.findIndex(owners => {
@@ -134,33 +135,30 @@ class IndexPage extends React.Component {
 		 	
 		 	
 		 	// map new values
-			 teamAlocal.record = parseInt(winsA.length) 
-			 //+ " - " + parseInt(winsB.length);
-			 teamBlocal.record = parseInt(winsB.length) 
-			 //+ " - " + parseInt(winsA.length);
-		 	
+			 teamAlocal.record = parseInt(winsA.length);
+			 teamBlocal.record = parseInt(winsB.length);
+			 
+
+			 for(var ii = 0; ii < localplayedGames.length; ii++) {
+					
+				const week = localplayedGames[ii].week.split(" ");
+				
+				localplayedGames[ii].date = "01/"  + week[1] + "/" + parseInt(localplayedGames[ii].year);
+
+			}
+
+			localplayedGames.sort(function(a, b) {
+				a = new Date(a.date);
+				b = new Date(b.date);
+				return a>b ? -1 : a<b ? 1 : 0;
+			});
+			 
+
 		 	//stat
 		 	const stat = (games, team) => {
 				
-				 
-				for(var ii = 0; ii < games.length; ii++) {
-					
-					const week = games[ii].week.split(" ");
-					
-					games[ii].date = parseInt(games[ii].year) + "-" + week[1];
 
-				}
-
-				function compare(a,b) {
-					if (a.last_nom > b.last_nom)
-					  return -1;
-					if (a.last_nom < b.last_nom)
-					  return 1;
-					return 0;
-				}
-				  
-				games.sort(compare);
-				games.slice(0).reverse();
+				console.log('prop asdasd', games)
 
 			    var i,
 			        temp,
@@ -334,23 +332,56 @@ class IndexPage extends React.Component {
   	}        
   	
   	componentDidMount() {
+		const localOwners = [...this.state.owners];
+		const simpleNames = []
+		const allGames = this.state.allGames;
+		const allGamesPlayers = [];
+		allGames.map((game, index) => {
+			allGamesPlayers.push(game.team_a[0].owner)
+			allGamesPlayers.push(game.team_b[0].owner)
+		})
+
+		localOwners.map((dude,index) => {
+			simpleNames.push(dude.name);
+		})
+
+		const uniqueNames = allGamesPlayers.filter((val,id,array) => array.indexOf(val) == id);
+		
+		uniqueNames.map((name, index) => {
+				if(simpleNames.indexOf(name) === -1 ) {
+					localOwners.push({
+						fantasyname: "inactive",
+						image: "/img/DEF.png",
+						name: name,
+						waiver: "-"
+					});
+				} 
+		})
+		this.setState({ owners:localOwners  })
   	}
 	        
   	render() {
-		  console.log('games l', this.state.gamesLength);
+		  console.log('games l', this.state);
 		 return (
 		   <main className="container-fluid headtohead">
 		    	<Breadcrumb title="Head to Head"/>
 			    
-			    	<Headtohead 
-			    		owners={this.props.data.allDataJson.edges[0].node.owners} 
-						triggerhappy={(event)=> this.teamChangeHandler(event)}
-						teama={this.state.teamA}
-						teamb={this.state.teamB}
-						games={this.state.gamesLength}
-			    	/>
+			    <div className="row">
+					<div className="col-lg-7">
+							<Headtohead 
+								owners={this.state.owners} 
+								triggerhappy={(event)=> this.teamChangeHandler(event)}
+								teama={this.state.teamA}
+								teamb={this.state.teamB}
+								games={this.state.gamesLength}
+							/>
+					</div>
+					<div className="col-lg-5">
+							<Gamelogs data={this.state.playedGames} />
+					</div>
+				</div>
 			   
-			    <Gamelogs data={this.state.playedGames} />
+			    
 		   </main>);
 	}
 }
