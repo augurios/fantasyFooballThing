@@ -44,9 +44,10 @@
 }
 .sidebar {
   width: 90px !important;
-  background-color: #212529;
+  background-color: #e7e7e7;
   min-height: calc(100vh - 56px);
   transition: all 0.4s ease;
+  box-shadow: inset 0 4px 14px rgba(0, 0, 0, 0.3607843137254902);
 }
 
 .sidebar .nav-item:last-child {
@@ -82,15 +83,17 @@
 }
 
 .navbar-nav .nav-item .nav-link.active {
-    color: #fff !important;
+    color: rgb(27, 89, 153) !important;
 }
 
 .sidebar .nav-item .nav-link {
-  color: rgba(255, 255, 255, 0.5);
+  color:#404040;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6313725490196078);
+  transition: all 0.4s ease;
 }
 
 .sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus, .sidebar .nav-item .nav-link:hover {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(51, 51, 51, 0.47058823529411764);
 }
 
 .sidebar.toggled {
@@ -135,6 +138,9 @@
   .sidebar.toggled .nav-item .nav-link span {
     font-size: 0.65rem;
     display: block;
+  }
+  .sidebar.untoggled .nav-item svg {
+    margin-right: 12px;
   }
   .sidebar.toggled .nav-item .dropdown-menu {
     position: absolute !important;

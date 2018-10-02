@@ -1,10 +1,9 @@
 .navbar.navbar-dark {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#757575+0,343a40+100 */
-    background: #757575; /* Old browsers */
-    background: -moz-linear-gradient(top, #757575 0%, #343a40 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #757575 0%,#343a40 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #757575 0%,#343a40 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#757575', endColorstr='#343a40',GradientType=0 ); /* IE6-9 */
+    background: #757575;
+    background: -moz-linear-gradient(top, #757575 0%, #343a40 100%); 
+    background: -webkit-linear-gradient(top, #757575 0%,#343a40 100%); 
+    background: linear-gradient(to bottom, #757575 0%,#343a40 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#757575', endColorstr='#343a40',GradientType=0 ); 
     box-shadow: -3px 2px 4px rgba(0, 0, 0, 0.25882352941176473);
 
     .navbar-brand {
