@@ -225,8 +225,7 @@ class IndexPage extends React.Component {
 					}
 
 					if(parseInt(games[i].team_b[0].score) > stats.highestScore && games[i].team_b[0].owner === team.name) {
-			            stats.highestScore = parseInt(games[i].team_b[0].score);
-			            
+			            stats.highestScore = parseInt(games[i].team_b[0].score);   
 					}
 					
 					// Check lowest score 
@@ -253,11 +252,11 @@ class IndexPage extends React.Component {
 					// Check Lowest margin 
 					if(lowMarginA < stats.lowestMargin && games[i].team_a[0].owner === team.name && lowMarginA > 0 ) {
 			            stats.lowestMargin = lowMarginA;
-					}
+					} 
 
 					if(lowMarginB < stats.lowestMargin && games[i].team_b[0].owner === team.name && lowMarginB > 0 ) {
 			            stats.lowestMargin = lowMarginB;
-					}
+					} 
 
 					if(games[i].team_a[0].owner === team.name) {
 						stats.totalPoints+= parseInt(games[i].team_a[0].score);
@@ -273,8 +272,6 @@ class IndexPage extends React.Component {
 			    return stats;
 			}
 			
-			
-			
 			const teamAstreak = stat(localplayedGames.slice(0).reverse(),teamAlocal);
 			
 		 	teamAlocal.currentstreak = teamAstreak.currentStreak;
@@ -283,7 +280,12 @@ class IndexPage extends React.Component {
 			teamAlocal.highestScore = teamAstreak.highestScore;
 			teamAlocal.lowestScore = teamAstreak.lowestScore;
 			teamAlocal.highestMargin = teamAstreak.highestMargin;
-			teamAlocal.lowestMargin = teamAstreak.lowestMargin;
+			if (teamAstreak.lowestMargin == 10000) {
+				teamAlocal.lowestMargin = 0;
+			}
+			else {
+				teamAlocal.lowestMargin = teamAstreak.lowestMargin;
+			}
 			teamAlocal.totalPoints = teamAstreak.totalPoints;
 		 	
 		 	const teamBstreak = stat(localplayedGames.slice(0).reverse(),teamBlocal);
@@ -294,7 +296,12 @@ class IndexPage extends React.Component {
 			teamBlocal.highestScore = teamBstreak.highestScore;
 			teamBlocal.lowestScore = teamBstreak.lowestScore;
 			teamBlocal.highestMargin = teamBstreak.highestMargin;
-			teamBlocal.lowestMargin = teamBstreak.lowestMargin;
+			if (teamBstreak.lowestMargin == 10000) {
+				teamBlocal.lowestMargin = 0;
+			}
+			else {
+				teamBlocal.lowestMargin = teamBstreak.lowestMargin;
+			}
 			teamBlocal.totalPoints = teamBstreak.totalPoints;
 			
 			//total points	
