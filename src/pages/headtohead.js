@@ -168,17 +168,17 @@ class IndexPage extends React.Component {
 					highMarginB = 0,
 					lowMarginA = 10000,
 					lowMarginB = 10000,
-			        length = games.length,
-			        stats = {
+			    length = games.length,
+			    stats = {
 				        highestStreak : 0,
 				        lowestStreak: 0,
-						currentStreak: 0,
-						highestScore:0,
-						lowestScore:10000,
-						highestMargin:0,
-						lowestMargin:10000,
-						totalPoints:0,
-			        }
+								currentStreak: 0,
+								highestScore:0,
+								lowestScore:10000,
+								highestMargin:0,
+								lowestMargin:10000,
+								totalPoints:0,
+			    }
 			        
 			    for(i = 0; i < length; i++) {
 				    var check;
