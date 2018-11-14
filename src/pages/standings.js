@@ -105,14 +105,14 @@ class IndexPage extends React.Component {
 						if(game.team_a[0].team === team.team) {
 							points += parseInt(game.team_a[0].score);
 							pointsAgaisnt += parseInt(game.team_b[0].score);
-						} else if (game.team_a[0].team === team.team) {
+						} else if (game.team_b[0].name === team.team) {
 							points += parseInt(game.team_b[0].score);
 							pointsAgaisnt += parseInt(game.team_a[0].score);
 						}
 
 						if (
 							(parseInt(game.team_a[0].score) > parseInt(game.team_b[0].score)) && game.team_a[0].team === team.team ||
-							(parseInt(game.team_b[0].score) > parseInt(game.team_a[0].score)) && game.team_b[0].team === team.team
+							(parseInt(game.team_b[0].score) > parseInt(game.team_a[0].score)) && game.team_b[0].name === team.team
 						)  {
 								wins++
 						} else if (parseInt(game.team_b[0].score) === parseInt(game.team_a[0].score)) {
