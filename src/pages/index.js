@@ -5,6 +5,7 @@ import TeamStats from '../components/team-stats';
 import Performance from '../components/Performance';
 import Chart from '../components/chart';
 import Breadcrumb from '../components/breadcrumb';
+import { isNullOrUndefined } from 'util';
 
 
 class IndexPage extends React.Component {
@@ -50,7 +51,7 @@ class IndexPage extends React.Component {
 												 }
 				this.setState(
 					{ teamSelected: this.loadTeamData(teaminner, this.state.allGames) },
-					//() => this.loadChart()
+					() => this.loadChart()
 				)
 		 } else {
 				  newTeam = teams.findIndex(team => {
@@ -78,22 +79,130 @@ class IndexPage extends React.Component {
 			//stats build uppon scraped data collection
 			var teamObject = team;
 			var teamGames = [];
+			var gamesByYear = [];
+			var playOffWeeks = [];
+			var TeamPlayOffGames = [];
+			var TeamPlayOffYears = 0;
 
 			games.map((game) => {
 				if ((game.team_a["0"].owner === team.name || game.team_b["0"].owner === team.name)) {
 					teamGames.push(game);
 				}
 			})
+
+			// get games by years and weeks
+
+			games.map((game) => {
+					if(gamesByYear.find(obj => obj.year === game.year)) {
+							var currentYear = gamesByYear.find(obj => obj.year === game.year)
+								if (currentYear.weeks.find(obj => obj.week === game.week)) {
+									
+									var currentWeek = currentYear.weeks.find(obj => obj.week === game.week)
+									
+										currentWeek.games.push(game);
+
+								} else {
+									currentYear.weeks.push({
+										week: game.week,
+										games: [game]
+									})
+								}
+						
+					} else {
+						gamesByYear.push({
+								year: game.year,
+								weeks: [{
+									week: game.week,
+									games: [game]
+								}]
+						});
+					}
+			})
+
+			// mark the playoff weeks and populate array
+
+			gamesByYear.map((year) => {
+				var gamesChecker = 0;
+				year.weeks.map((week) => {
+					if (gamesChecker === 0) {
+							gamesChecker = week.games.length;
+					} else if (week.games.length < gamesChecker) {
+							week.isPlayoff = true;
+							playOffWeeks.push(week)
+					}
+				});
+			});
+			
+			// get team's playoff games
+
+			playOffWeeks.map((week) => {
+					week.games.map((game) => {
+							if (game.team_a['0'].owner === team.name || game.team_b['0'].owner === team.name) {
+									TeamPlayOffGames.push(game);
+							}
+					});
+			});
+
+			TeamPlayOffGames.map((game,index) => {
+				if(isNullOrUndefined(TeamPlayOffGames[index-1]) ) {
+					TeamPlayOffYears++;
+				} else{
+					if(game.year === TeamPlayOffGames[index-1].year) {
+
+					} else {
+						TeamPlayOffYears++;
+					}
+				} 
+			})
+
+
+			teamObject.playoffAppearances = TeamPlayOffYears;
+
+			// get playoff stats
+
+
+
+			teamObject.championshipAppearance = 0;
+			teamObject.championshipWins = 0;
+			teamObject.championshipLoses = 0;
+			teamObject.championshipTies = 0;
+			teamObject.playOffWins = 0;
+			teamObject.playOffLoses = 0;
+			teamObject.playOffTies = 0;
+
+			TeamPlayOffGames.map((game) => {
+				
+
+					if (game.team_a['0'].owner === team.name || game.team_b['0'].owner === team.name) {
+								if(game.week === "Week 16") {
+									teamObject.championshipAppearance++;
+								}
+
+								if (
+									(parseInt(game.team_a[0].score) > parseInt(game.team_b[0].score)) && game.team_a[0].owner === team.name ||
+									(parseInt(game.team_b[0].score) > parseInt(game.team_a[0].score)) && game.team_b[0].owner === team.name
+								)  {
+										teamObject.playOffWins++
+										if(game.week === "Week 16") {
+											teamObject.championshipWins++
+										}
+								} else if (parseInt(game.team_b[0].score) === parseInt(game.team_a[0].score)) {
+									teamObject.playOffTies++
+								} else {
+									teamObject.playOffLoses++
+								}
+						}
+					
+			});
+			
 			//find year of first occurance
 
 			for(var ii = 0; ii < teamGames.length; ii++) {
-					
 				const week = teamGames[ii].week.split(" ");
 				teamGames[ii].date = "01/"  + week[1] + "/" + parseInt(games[ii].year);
-
 			}
 			
-			var nikcindex = teamGames.findIndex(game => {
+			var nikcindex = teamGames.findIndex((game) => {
 
 					if (game.team_a["0"].owner === team.name || game.team_b["0"].owner === team.name) {
 						return game.year;
@@ -102,9 +211,18 @@ class IndexPage extends React.Component {
 			});
 
 			if (teamGames[nikcindex].team_a['0'].owner === team.name) {
+				 if (teamGames[nikcindex].team_a['0'].team) {
 					teamObject.nickname =	teamGames[nikcindex].team_a['0'].team
-			} else {
+				 } else {
+					teamObject.nickname =	teamGames[nikcindex].team_a['0'].name
+				 }
+					
+			} else if(teamGames[nikcindex].team_b['0'].owner === team.name) {
+				if (teamGames[nikcindex].team_b['0'].team) {
 					teamObject.nickname =	teamGames[nikcindex].team_b['0'].team
+				 } else {
+					teamObject.nickname =	teamGames[nikcindex].team_b['0'].name
+				 }
 			}
 			
 			teamGames.sort(function(a, b) {
@@ -363,19 +481,19 @@ class IndexPage extends React.Component {
 				    win={this.state.teamSelected.totalWins}
 				    loss={this.state.teamSelected.totalLoses} 
 				    tie={this.state.teamSelected.totalTies} 
-				    boxa={{title:'Regular Season Champion',content:'4'}} 
+				    boxa={{title:'Regular Season Champion',content:this.state.teamSelected.championshipWins}} 
 				    boxb={{title:'Offense Fantasy Pts',content:'4'}}
 				    boxc={{title:'Defense Fantasy Pts',content:'4'}} 
 				    />
 				  <Performance 
 			      title="Playoff"
-			      rate={this.rate(13,15,3)}
-				    win="2" 
-				    loss="4" 
-				    tie="6" 
-				    boxa={{title:'Playoffs Appearances',content:'4'}} 
-				    boxb={{title:'Championships Appearance',content:'4'}}
-				    boxc={{title:'Championships',content:'4'}} 
+			      rate={this.rate(this.state.teamSelected.playOffWins,this.state.teamSelected.playOffLoses,this.state.teamSelected.playOffTies)}
+				    win={this.state.teamSelected.playOffWins} 
+				    loss={this.state.teamSelected.playOffLoses}
+				    tie={this.state.teamSelected.playOffTies} 
+				    boxa={{title:'Playoffs Appearances',content:this.state.teamSelected.playoffAppearances}} 
+				    boxb={{title:'Championships Appearance',content:this.state.teamSelected.championshipAppearance}}
+				    boxc={{title:'Championships',content:this.state.teamSelected.championshipWins}} 
 				    />
 				    <Chart data={chartData} />
 		   </main>);

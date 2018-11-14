@@ -43,8 +43,7 @@ const TeamStats = (props)  =>
 	        </div>
 	        <div className="col-lg-4">
 	          <div >
-	            <h4>Head Coach</h4>
-	            <img src={props.data.HCimage} alt="j4sPHne" id="head-coach-img" />
+	           
 	            <p>
 	              <strong id="name-head-coach">{props.data.headcoach} </strong><br />
 	              <strong>Nickname: </strong> <span id="nickname">{props.data.nickname}</span> <br />
